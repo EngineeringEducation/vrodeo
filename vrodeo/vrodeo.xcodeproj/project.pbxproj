@@ -1,0 +1,444 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		486F4BDE1B51BE5500860A65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486F4BDD1B51BE5500860A65 /* AppDelegate.swift */; };
+		486F4BE01B51BE5500860A65 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486F4BDF1B51BE5500860A65 /* FirstViewController.swift */; };
+		486F4BE21B51BE5500860A65 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486F4BE11B51BE5500860A65 /* SecondViewController.swift */; };
+		486F4BE51B51BE5500860A65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 486F4BE31B51BE5500860A65 /* Main.storyboard */; };
+		486F4BE71B51BE5500860A65 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 486F4BE61B51BE5500860A65 /* Images.xcassets */; };
+		486F4BEA1B51BE5500860A65 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 486F4BE81B51BE5500860A65 /* LaunchScreen.xib */; };
+		486F4BF61B51BE5600860A65 /* vrodeoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486F4BF51B51BE5600860A65 /* vrodeoTests.swift */; };
+		486F4C001B51BEC300860A65 /* ALAssetsGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486F4BFF1B51BEC300860A65 /* ALAssetsGroupViewController.swift */; };
+		486F4C021B51E93100860A65 /* IMG_6543.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 486F4C011B51E93100860A65 /* IMG_6543.MOV */; };
+		486F4C041B51E93C00860A65 /* Ranch Roping Team 13 Ride 1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 486F4C031B51E93C00860A65 /* Ranch Roping Team 13 Ride 1.mp4 */; };
+		486F4C061B51EBA600860A65 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 486F4C051B51EBA600860A65 /* AssetsLibrary.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		486F4BF01B51BE5600860A65 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 486F4BD01B51BE5500860A65 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 486F4BD71B51BE5500860A65;
+			remoteInfo = vrodeo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		486F4BD81B51BE5500860A65 /* vrodeo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vrodeo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		486F4BDC1B51BE5500860A65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		486F4BDD1B51BE5500860A65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		486F4BDF1B51BE5500860A65 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		486F4BE11B51BE5500860A65 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		486F4BE41B51BE5500860A65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		486F4BE61B51BE5500860A65 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		486F4BE91B51BE5500860A65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		486F4BEF1B51BE5600860A65 /* vrodeoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vrodeoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		486F4BF41B51BE5600860A65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		486F4BF51B51BE5600860A65 /* vrodeoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vrodeoTests.swift; sourceTree = "<group>"; };
+		486F4BFF1B51BEC300860A65 /* ALAssetsGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALAssetsGroupViewController.swift; sourceTree = "<group>"; };
+		486F4C011B51E93100860A65 /* IMG_6543.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = IMG_6543.MOV; path = ../../../../../../Downloads/IMG_6543.MOV; sourceTree = "<group>"; };
+		486F4C031B51E93C00860A65 /* Ranch Roping Team 13 Ride 1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Ranch Roping Team 13 Ride 1.mp4"; path = "../../../../../../Downloads/Ranch Roping Team 13 Ride 1.mp4"; sourceTree = "<group>"; };
+		486F4C051B51EBA600860A65 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		486F4BD51B51BE5500860A65 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				486F4C061B51EBA600860A65 /* AssetsLibrary.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		486F4BEC1B51BE5600860A65 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		486F4BCF1B51BE5500860A65 = {
+			isa = PBXGroup;
+			children = (
+				486F4C051B51EBA600860A65 /* AssetsLibrary.framework */,
+				486F4BDA1B51BE5500860A65 /* vrodeo */,
+				486F4BF21B51BE5600860A65 /* vrodeoTests */,
+				486F4BD91B51BE5500860A65 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		486F4BD91B51BE5500860A65 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				486F4BD81B51BE5500860A65 /* vrodeo.app */,
+				486F4BEF1B51BE5600860A65 /* vrodeoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		486F4BDA1B51BE5500860A65 /* vrodeo */ = {
+			isa = PBXGroup;
+			children = (
+				486F4BDD1B51BE5500860A65 /* AppDelegate.swift */,
+				486F4BDF1B51BE5500860A65 /* FirstViewController.swift */,
+				486F4BE11B51BE5500860A65 /* SecondViewController.swift */,
+				486F4BE31B51BE5500860A65 /* Main.storyboard */,
+				486F4BE61B51BE5500860A65 /* Images.xcassets */,
+				486F4BE81B51BE5500860A65 /* LaunchScreen.xib */,
+				486F4C011B51E93100860A65 /* IMG_6543.MOV */,
+				486F4C031B51E93C00860A65 /* Ranch Roping Team 13 Ride 1.mp4 */,
+				486F4BDB1B51BE5500860A65 /* Supporting Files */,
+				486F4BFF1B51BEC300860A65 /* ALAssetsGroupViewController.swift */,
+			);
+			path = vrodeo;
+			sourceTree = "<group>";
+		};
+		486F4BDB1B51BE5500860A65 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				486F4BDC1B51BE5500860A65 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		486F4BF21B51BE5600860A65 /* vrodeoTests */ = {
+			isa = PBXGroup;
+			children = (
+				486F4BF51B51BE5600860A65 /* vrodeoTests.swift */,
+				486F4BF31B51BE5600860A65 /* Supporting Files */,
+			);
+			path = vrodeoTests;
+			sourceTree = "<group>";
+		};
+		486F4BF31B51BE5600860A65 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				486F4BF41B51BE5600860A65 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		486F4BD71B51BE5500860A65 /* vrodeo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 486F4BF91B51BE5600860A65 /* Build configuration list for PBXNativeTarget "vrodeo" */;
+			buildPhases = (
+				486F4BD41B51BE5500860A65 /* Sources */,
+				486F4BD51B51BE5500860A65 /* Frameworks */,
+				486F4BD61B51BE5500860A65 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = vrodeo;
+			productName = vrodeo;
+			productReference = 486F4BD81B51BE5500860A65 /* vrodeo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		486F4BEE1B51BE5600860A65 /* vrodeoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 486F4BFC1B51BE5600860A65 /* Build configuration list for PBXNativeTarget "vrodeoTests" */;
+			buildPhases = (
+				486F4BEB1B51BE5600860A65 /* Sources */,
+				486F4BEC1B51BE5600860A65 /* Frameworks */,
+				486F4BED1B51BE5600860A65 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				486F4BF11B51BE5600860A65 /* PBXTargetDependency */,
+			);
+			name = vrodeoTests;
+			productName = vrodeoTests;
+			productReference = 486F4BEF1B51BE5600860A65 /* vrodeoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		486F4BD01B51BE5500860A65 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = vrodeo;
+				TargetAttributes = {
+					486F4BD71B51BE5500860A65 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					486F4BEE1B51BE5600860A65 = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = 486F4BD71B51BE5500860A65;
+					};
+				};
+			};
+			buildConfigurationList = 486F4BD31B51BE5500860A65 /* Build configuration list for PBXProject "vrodeo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 486F4BCF1B51BE5500860A65;
+			productRefGroup = 486F4BD91B51BE5500860A65 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				486F4BD71B51BE5500860A65 /* vrodeo */,
+				486F4BEE1B51BE5600860A65 /* vrodeoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		486F4BD61B51BE5500860A65 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				486F4BE51B51BE5500860A65 /* Main.storyboard in Resources */,
+				486F4BEA1B51BE5500860A65 /* LaunchScreen.xib in Resources */,
+				486F4C021B51E93100860A65 /* IMG_6543.MOV in Resources */,
+				486F4C041B51E93C00860A65 /* Ranch Roping Team 13 Ride 1.mp4 in Resources */,
+				486F4BE71B51BE5500860A65 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		486F4BED1B51BE5600860A65 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		486F4BD41B51BE5500860A65 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				486F4C001B51BEC300860A65 /* ALAssetsGroupViewController.swift in Sources */,
+				486F4BE21B51BE5500860A65 /* SecondViewController.swift in Sources */,
+				486F4BDE1B51BE5500860A65 /* AppDelegate.swift in Sources */,
+				486F4BE01B51BE5500860A65 /* FirstViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		486F4BEB1B51BE5600860A65 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				486F4BF61B51BE5600860A65 /* vrodeoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		486F4BF11B51BE5600860A65 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 486F4BD71B51BE5500860A65 /* vrodeo */;
+			targetProxy = 486F4BF01B51BE5600860A65 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		486F4BE31B51BE5500860A65 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				486F4BE41B51BE5500860A65 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		486F4BE81B51BE5500860A65 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				486F4BE91B51BE5500860A65 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		486F4BF71B51BE5600860A65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		486F4BF81B51BE5600860A65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		486F4BFA1B51BE5600860A65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = vrodeo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		486F4BFB1B51BE5600860A65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = vrodeo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		486F4BFD1B51BE5600860A65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = vrodeoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vrodeo.app/vrodeo";
+			};
+			name = Debug;
+		};
+		486F4BFE1B51BE5600860A65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = vrodeoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vrodeo.app/vrodeo";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		486F4BD31B51BE5500860A65 /* Build configuration list for PBXProject "vrodeo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				486F4BF71B51BE5600860A65 /* Debug */,
+				486F4BF81B51BE5600860A65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		486F4BF91B51BE5600860A65 /* Build configuration list for PBXNativeTarget "vrodeo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				486F4BFA1B51BE5600860A65 /* Debug */,
+				486F4BFB1B51BE5600860A65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		486F4BFC1B51BE5600860A65 /* Build configuration list for PBXNativeTarget "vrodeoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				486F4BFD1B51BE5600860A65 /* Debug */,
+				486F4BFE1B51BE5600860A65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 486F4BD01B51BE5500860A65 /* Project object */;
+}

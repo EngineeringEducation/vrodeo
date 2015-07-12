@@ -1,0 +1,4 @@
+version: "Apple Swift version 1.2 (swiftlang-602.0.53.1 clang-602.0.53)"
+options: "42f9efb1cd26954881d64e5b0e1cae49"
+inputs: 
+- "/Users/caitlin/src/Clients/vrodeo/vrodeo/vrodeo/vrodeoTests/vrodeoTests.swift"
