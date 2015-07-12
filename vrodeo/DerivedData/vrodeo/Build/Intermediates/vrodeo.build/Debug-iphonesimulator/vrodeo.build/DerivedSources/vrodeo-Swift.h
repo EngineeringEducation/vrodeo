@@ -84,6 +84,7 @@ typedef struct _NSZone NSZone;
 #endif
 #if defined(__has_feature) && __has_feature(modules)
 @import UIKit;
+@import CoreGraphics;
 #endif
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
@@ -106,8 +107,8 @@ SWIFT_CLASS("_TtC6vrodeo27ALAssetsGroupViewController")
 - (void)setALAssetGroupName:(NSString * __nonnull)name;
 - (void)addGroupAlbumToRoll;
 - (void)saveVideoToGalleryGroup:(NSURL * __nonnull)videoURL;
-- (UIImage * __nonnull)generateThumbImage:(NSURL * __nonnull)url;
 - (void)loadVideosFromGroupAlbum;
+- (UIImage * __nonnull)generateThumbImage:(NSURL * __nonnull)url;
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithNibName:(NSString * __nullable)nibNameOrNil bundle:(NSBundle * __nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithCoder:(NSCoder * __nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 @end
@@ -139,7 +140,7 @@ SWIFT_CLASS("_TtC6vrodeo11AppDelegate")
 @class UITableView;
 
 SWIFT_CLASS("_TtC6vrodeo19FirstViewController")
-@interface FirstViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource>
+@interface FirstViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property (nonatomic, copy) NSString * __nonnull groupName;
 @property (nonatomic) UIImagePickerController * __nonnull camera;
 @property (nonatomic) UIImagePickerController * __nonnull cameraRoll;
@@ -160,6 +161,16 @@ SWIFT_CLASS("_TtC6vrodeo19FirstViewController")
 - (void)imagePickerControllerDidCancel:(UIImagePickerController * __nonnull)picker;
 - (void)imagePickerController:(UIImagePickerController * __nonnull)picker didFinishPickingMediaWithInfo:(NSDictionary * __nonnull)info;
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithNibName:(NSString * __nullable)nibNameOrNil bundle:(NSBundle * __nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
+- (SWIFT_NULLABILITY(nonnull) instancetype)initWithCoder:(NSCoder * __nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+@class UIImageView;
+
+SWIFT_CLASS("_TtC6vrodeo27PhotoCellCollectionViewCell")
+@interface PhotoCellCollectionViewCell : UICollectionViewCell
+@property (nonatomic, weak) IBOutlet UIImageView * __null_unspecified videoCell;
+- (void)awakeFromNib;
+- (SWIFT_NULLABILITY(nonnull) instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithCoder:(NSCoder * __nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 @end
 

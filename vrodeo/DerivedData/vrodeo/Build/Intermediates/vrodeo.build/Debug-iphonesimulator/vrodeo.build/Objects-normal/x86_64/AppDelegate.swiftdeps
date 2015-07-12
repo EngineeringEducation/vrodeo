@@ -4,28 +4,28 @@ provides:
 nominals:
 - "C6vrodeo11AppDelegate"
 class-members:
-- "applicationWillResignActive"
+- "applicationWillEnterForeground"
 - "window"
 - "applicationWillTerminate"
-- "application"
-- "applicationWillEnterForeground"
-- "applicationDidBecomeActive"
+- "applicationWillResignActive"
 - "applicationDidEnterBackground"
+- "applicationDidBecomeActive"
+- "application"
 top-level:
-- "UIResponder"
-- "AnyObject"
 - "UIWindow"
+- "Bool"
+- "AnyObject"
+- "UIResponder"
 - "UIApplicationDelegate"
 - "NSObject"
-- "UIApplication"
-- "Bool"
 - !private "BooleanLiteralType"
+- "UIApplication"
 member-access:
-- "C6vrodeo11AppDelegate"
+- "PSo21UIApplicationDelegate"
 - "CSo8NSObject"
+- "C6vrodeo11AppDelegate"
 - "PSs9AnyObject"
 - "CSo11UIResponder"
-- "PSo21UIApplicationDelegate"
 dynamic-lookup:
 cross-module:
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/Swift.swiftmodule"

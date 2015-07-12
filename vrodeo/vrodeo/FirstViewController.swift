@@ -11,7 +11,7 @@ import MobileCoreServices
 import AssetsLibrary
 import MediaPlayer
 
-class FirstViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource {
+class FirstViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     var groupName = "vrodeo"
     
@@ -27,6 +27,9 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
     
     @IBAction func refreshTable(sender: UIBarButtonItem) {
         videoTableCollectionView.reloadData()
+        for (var i = 0; (i < assets.assets.count); i++){
+            println(assets.assets[i].URL)
+        }
     }
     
     
@@ -39,15 +42,10 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("video", forIndexPath: indexPath) as! UICollectionViewCell
-        if assets.assets.count != 0 {
-           // cell.cameraOutlet.image = UIImage(CGImage: asset.thumbnail().takeUnretainedValue())
-           // cell = assets.assets[indexPath.row].Image
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("video", forIndexPath: indexPath) as! PhotoCellCollectionViewCell
+        cell.videoCell.image = self.assets.assets[indexPath.row].Thumbnail
+        cell.videoCell.sizeToFit()
         return cell
-        } else {
-            return cell
-        }
-        
     }
     
 //    @IBOutlet weak var videoTable: UITableView!
