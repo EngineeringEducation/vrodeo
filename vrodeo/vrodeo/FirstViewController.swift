@@ -17,22 +17,39 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
     
     var camera = UIImagePickerController()
     var cameraRoll = UIImagePickerController()
-    lazy var library = ALAssetsLibrary()
+    var library = ALAssetsLibrary()
     var videoURLs : [String] = []
     var moviePlayer : MPMoviePlayerController!
     var vrodeoGroup = ALAssetsGroup()
     let assets = ALAssetsGroupViewController()
-    var groupCount = 0
+    
+    @IBOutlet weak var videoTableCollectionView: UICollectionView!
+    
+    @IBAction func refreshTable(sender: UIBarButtonItem) {
+        videoTableCollectionView.reloadData()
+    }
+    
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        println(assets.assets.count)
-        return assets.assets.count
+        if assets.assets.count != 0 {
+            return assets.assets.count
+        } else {
+            return 0
+        }
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         var cell = collectionView.dequeueReusableCellWithReuseIdentifier("video", forIndexPath: indexPath) as! UICollectionViewCell
+        if assets.assets.count != 0 {
+           // cell.cameraOutlet.image = UIImage(CGImage: asset.thumbnail().takeUnretainedValue())
+           // cell = assets.assets[indexPath.row].Image
         return cell
+        } else {
+            return cell
+        }
+        
     }
+    
 //    @IBOutlet weak var videoTable: UITableView!
     
     @IBAction func recordVideo(sender: UIBarButtonItem) {
@@ -67,10 +84,12 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
         
         assets.setALAssetGroupName(groupName)
         assets.addGroupAlbumToRoll()
-        
-//        library.loadImagesFromAlbum("vrodeo", completion: { (Array, err) -> Void in
-//            println(Array)
-//        })
+        assets.loadVideosFromGroupAlbum()
+        //need to figure out how to set the groupCount after the previous call finishes. Can't set from other one because then it crashes.
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
     
     // OK so right now, the camera launches but isn't actually ready. Need to implement a timer or something to catch this. Not a huge deal, just push record again and it works when it's ready.
@@ -78,19 +97,20 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
         self.camera.startVideoCapture()
     }
     
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var urlString = videoURLs[indexPath.row]
-        self.moviePlayer = MPMoviePlayerController(contentURL: NSURL(fileURLWithPath: urlString))
-        
-        if (self.moviePlayer != nil) {
-            self.moviePlayer.prepareToPlay()
-            self.view.addSubview(moviePlayer.view)
-            self.moviePlayer.view.frame = self.view.bounds
-            self.moviePlayer.fullscreen = true
-            self.moviePlayer.scalingMode = .AspectFill
-            self.moviePlayer.movieSourceType = .File
-            self.moviePlayer.play()
+        if (videoURLs.count > 0){
+            var urlString = videoURLs[indexPath.row]
+            self.moviePlayer = MPMoviePlayerController(contentURL: NSURL(fileURLWithPath: urlString))
+            
+            if (self.moviePlayer != nil) {
+                self.moviePlayer.prepareToPlay()
+                self.view.addSubview(moviePlayer.view)
+                self.moviePlayer.view.frame = self.view.bounds
+                self.moviePlayer.fullscreen = true
+                self.moviePlayer.scalingMode = .AspectFill
+                self.moviePlayer.movieSourceType = .File
+                self.moviePlayer.play()
+            }
         }
     }
     

@@ -4,27 +4,27 @@ provides:
 nominals:
 - "C6vrodeo11AppDelegate"
 class-members:
-- "applicationDidBecomeActive"
-- "applicationWillEnterForeground"
 - "applicationWillResignActive"
-- "application"
-- "applicationDidEnterBackground"
 - "window"
 - "applicationWillTerminate"
+- "application"
+- "applicationWillEnterForeground"
+- "applicationDidBecomeActive"
+- "applicationDidEnterBackground"
 top-level:
 - "UIResponder"
+- "AnyObject"
+- "UIWindow"
 - "UIApplicationDelegate"
 - "NSObject"
 - "UIApplication"
-- "AnyObject"
-- !private "BooleanLiteralType"
 - "Bool"
-- "UIWindow"
+- !private "BooleanLiteralType"
 member-access:
 - "C6vrodeo11AppDelegate"
 - "CSo8NSObject"
-- "CSo11UIResponder"
 - "PSs9AnyObject"
+- "CSo11UIResponder"
 - "PSo21UIApplicationDelegate"
 dynamic-lookup:
 cross-module:
@@ -37,5 +37,5 @@ cross-module:
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/CoreGraphics.swiftmodule"
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/Security.swiftmodule"
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/CoreImage.swiftmodule"
-- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/CoreAudio.swiftmodule"
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/AssetsLibrary.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/CoreAudio.swiftmodule"

@@ -89,9 +89,9 @@ typedef struct _NSZone NSZone;
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
 #pragma clang diagnostic ignored "-Wduplicate-method-arg"
 @class ALAssetsLibrary;
-@class ALAsset;
-@class FirstViewController;
+@class AppDelegate;
 @class NSURL;
+@class UIImage;
 @class NSBundle;
 @class NSCoder;
 
@@ -100,12 +100,13 @@ SWIFT_CLASS("_TtC6vrodeo27ALAssetsGroupViewController")
 @property (nonatomic, copy) NSString * __nullable groupName;
 @property (nonatomic) ALAssetsLibrary * __nonnull library;
 @property (nonatomic, copy) NSArray * __nonnull assets;
-@property (nonatomic, readonly) FirstViewController * __nonnull albumScreen;
+@property (nonatomic) AppDelegate * __nonnull appDelegate;
 - (void)viewDidLoad;
 - (void)didReceiveMemoryWarning;
 - (void)setALAssetGroupName:(NSString * __nonnull)name;
 - (void)addGroupAlbumToRoll;
 - (void)saveVideoToGalleryGroup:(NSURL * __nonnull)videoURL;
+- (UIImage * __nonnull)generateThumbImage:(NSURL * __nonnull)url;
 - (void)loadVideosFromGroupAlbum;
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithNibName:(NSString * __nullable)nibNameOrNil bundle:(NSBundle * __nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithCoder:(NSCoder * __nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
@@ -130,10 +131,10 @@ SWIFT_CLASS("_TtC6vrodeo11AppDelegate")
 @class UIImagePickerController;
 @class MPMoviePlayerController;
 @class ALAssetsGroup;
+@class UIBarButtonItem;
 @class UICollectionView;
 @class NSIndexPath;
 @class UICollectionViewCell;
-@class UIBarButtonItem;
 @class NSNotification;
 @class UITableView;
 
@@ -147,11 +148,13 @@ SWIFT_CLASS("_TtC6vrodeo19FirstViewController")
 @property (nonatomic) MPMoviePlayerController * __null_unspecified moviePlayer;
 @property (nonatomic) ALAssetsGroup * __nonnull vrodeoGroup;
 @property (nonatomic, readonly) ALAssetsGroupViewController * __nonnull assets;
-@property (nonatomic) NSInteger groupCount;
+@property (nonatomic, weak) IBOutlet UICollectionView * __null_unspecified videoTableCollectionView;
+- (IBAction)refreshTable:(UIBarButtonItem * __nonnull)sender;
 - (NSInteger)collectionView:(UICollectionView * __nonnull)collectionView numberOfItemsInSection:(NSInteger)section;
 - (UICollectionViewCell * __nonnull)collectionView:(UICollectionView * __nonnull)collectionView cellForItemAtIndexPath:(NSIndexPath * __nonnull)indexPath;
 - (IBAction)recordVideo:(UIBarButtonItem * __nonnull)sender;
 - (void)viewWillAppear:(BOOL)animated;
+- (void)viewDidLoad;
 - (void)cameraIsReady:(NSNotification * __nonnull)notification;
 - (void)tableView:(UITableView * __nonnull)tableView didSelectRowAtIndexPath:(NSIndexPath * __nonnull)indexPath;
 - (void)imagePickerControllerDidCancel:(UIImagePickerController * __nonnull)picker;

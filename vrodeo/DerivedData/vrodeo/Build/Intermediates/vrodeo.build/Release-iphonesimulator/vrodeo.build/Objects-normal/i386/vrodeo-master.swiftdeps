@@ -1,0 +1,7 @@
+version: "Apple Swift version 1.2 (swiftlang-602.0.53.1 clang-602.0.53)"
+options: "8b54ed35667173c53f6c823c51e335be"
+inputs: 
+- "/Users/caitlin/src/Clients/vrodeo/vrodeo/vrodeo/vrodeo/ALAssetsGroupViewController.swift"
+- "/Users/caitlin/src/Clients/vrodeo/vrodeo/vrodeo/vrodeo/SecondViewController.swift"
+- "/Users/caitlin/src/Clients/vrodeo/vrodeo/vrodeo/vrodeo/AppDelegate.swift"
+- "/Users/caitlin/src/Clients/vrodeo/vrodeo/vrodeo/vrodeo/FirstViewController.swift"

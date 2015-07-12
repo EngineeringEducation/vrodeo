@@ -8,14 +8,23 @@
 
 import UIKit
 import AssetsLibrary
+import AVFoundation
+
+class AssetObject {
+    var Metadata : [NSObject : AnyObject]!
+    var Image : Unmanaged<CGImage>!
+    var URL : NSURL?
+    var Thumbnail : UIImage?
+}
+
 
 class ALAssetsGroupViewController: UIViewController {
 
     var groupName : String?
     var library = ALAssetsLibrary()
-    var assets : Array<ALAsset> = []
-    let albumScreen = FirstViewController()
-    
+    var assets = [AssetObject]()
+    var appDelegate = AppDelegate()
+    var assetObject = AssetObject()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +49,7 @@ class ALAssetsGroupViewController: UIViewController {
     }
     
     func saveVideoToGalleryGroup(videoURL: NSURL){
-        library.enumerateGroupsWithTypes(ALAssetsGroupType(ALAssetsGroupAll),
+        library.enumerateGroupsWithTypes(ALAssetsGroupType(ALAssetsGroupAlbum),
                 usingBlock: { (group: ALAssetsGroup?, stop: UnsafeMutablePointer<ObjCBool>) in
                     if (group != nil) {
                         if group!.valueForProperty(ALAssetsGroupPropertyName).isEqualToString(self.groupName!) {
@@ -69,20 +78,36 @@ class ALAssetsGroupViewController: UIViewController {
                 println("Error saving video \(theError)")
             }
         )}
+
+    func generateThumbImage(url : NSURL) -> UIImage{
+        var asset : AVAsset = AVAsset.assetWithURL(url) as! AVAsset
+        var assetImgGenerate : AVAssetImageGenerator = AVAssetImageGenerator(asset: asset)
+        assetImgGenerate.appliesPreferredTrackTransform = true
+        var error       : NSError? = nil
+        var time        : CMTime = CMTimeMake(1, 30)
+        var img         : CGImageRef = assetImgGenerate.copyCGImageAtTime(time, actualTime: nil, error: &error)
+        var frameImg    : UIImage = UIImage(CGImage: img)!
+        
+        return frameImg
+    }
     
-    func loadVideosFromGroupAlbum(){
-        library.enumerateGroupsWithTypes(ALAssetsGroupType(ALAssetsGroupAll),
+    
+    func loadVideosFromGroupAlbum() {
+        self.library.enumerateGroupsWithTypes(ALAssetsGroupType(ALAssetsGroupAlbum),
             usingBlock: { (group: ALAssetsGroup?, stop: UnsafeMutablePointer<ObjCBool>) in
                 if (group != nil) {
                     if group!.valueForProperty(ALAssetsGroupPropertyName).isEqualToString(self.groupName!) {
                         stop.initialize(true)
                         group?.enumerateAssetsUsingBlock({ (asset: ALAsset?, index: Int, stop: UnsafeMutablePointer<ObjCBool>) -> Void in
                             if (asset != nil) {
-                                println("asset=\(asset)")
-                                self.assets.append(asset!)
-                                self.albumScreen.groupCount = self.assets.count
+                                self.assetObject.URL = asset!.defaultRepresentation().url()
+                                self.assetObject.Thumbnail = self.generateThumbImage(self.assetObject.URL!)
+                                self.assetObject.Image = asset!.defaultRepresentation().fullResolutionImage()
+                                self.assetObject.Metadata = asset!.defaultRepresentation().metadata()
+                                self.assets.append(self.assetObject)
                             }
                         })
+                        println(self.assets[0].URL)
                     }
                 }
             },
@@ -90,7 +115,9 @@ class ALAssetsGroupViewController: UIViewController {
             failureBlock: { (theError: NSError!) -> Void in
                 println("Error saving video \(theError)")
             }
-        )}
+            
+        )
+    }
 
     
 
