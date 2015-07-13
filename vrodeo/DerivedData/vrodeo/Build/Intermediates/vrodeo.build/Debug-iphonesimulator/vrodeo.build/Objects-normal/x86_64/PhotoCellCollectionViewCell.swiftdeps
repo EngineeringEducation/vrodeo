@@ -4,19 +4,19 @@ provides:
 nominals:
 - "C6vrodeo27PhotoCellCollectionViewCell"
 class-members:
-- "videoCell"
 - "awakeFromNib"
+- "videoCell"
 top-level:
 - "UICollectionViewCell"
 - "UIImageView"
 member-access:
-- "CSo6UIView"
 - "CSo8NSObject"
-- "PSs9AnyObject"
-- "CSo20UICollectionViewCell"
 - "C6vrodeo27PhotoCellCollectionViewCell"
-- "CSo11UIResponder"
 - "CSo24UICollectionReusableView"
+- "PSs9AnyObject"
+- "CSo11UIResponder"
+- "CSo6UIView"
+- "CSo20UICollectionViewCell"
 dynamic-lookup:
 cross-module:
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/Swift.swiftmodule"
