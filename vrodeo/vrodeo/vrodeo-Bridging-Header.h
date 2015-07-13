@@ -3,3 +3,4 @@
 //
 
 #import "Cloudinary/Cloudinary.h"
+#import "FMAssetStream/NSMutableURLRequest+FMAssetStream.h"

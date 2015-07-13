@@ -31,7 +31,7 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
         for (var i = 0; (i < assets.assets.count); i++){
             println(assets.assets[i].URL)
             let video = assets.assets[i].URL
-
+            cloudinary.uploadVideo(assets.assetArray[i], url: video!)
         }
     }
     

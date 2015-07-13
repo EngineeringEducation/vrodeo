@@ -9,7 +9,7 @@
 import UIKit
 import AssetsLibrary
 
-class CloudinaryViewController: UIViewController, CLUploaderDelegate {
+class CloudinaryViewController: UIViewController, FMAssetInputStreamDelegate, CLUploaderDelegate {
 
     var Cloudinary = CLCloudinary()!
     
@@ -23,9 +23,9 @@ class CloudinaryViewController: UIViewController, CLUploaderDelegate {
         
     }
     
-    func uploadVideo(video: ALAsset){
+    func uploadVideo(video: ALAsset, url: NSURL){
         var Cloudinary = CLCloudinary(url: "http://res.cloudinary.com/vrodeo")
-        
+        let assetStreamDelegate : FMAssetInputStreamDelegate
         let uploader = CLUploader(Cloudinary, delegate: self)
 
         Cloudinary.config().setValue("335738194273788", forKey: "api_key")
@@ -34,9 +34,17 @@ class CloudinaryViewController: UIViewController, CLUploaderDelegate {
         //let string = video.standardizedURL
         println(video)
         
-        uploader.upload(video, options: ["public_id":"vrodeo"])
+        let request = NSMutableURLRequest(URL: url)
+        request.setAsset(video, delegate: self)
+        
+        uploader.upload(request, options: ["public_id":"vrodeo"])
+    }
+    
+    func progressBytes(progress: Int64, totalBytes total: Int64) {
+        println("something")
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

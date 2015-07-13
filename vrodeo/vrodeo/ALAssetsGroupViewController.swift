@@ -24,6 +24,7 @@ class ALAssetsGroupViewController: UIViewController {
     var library = ALAssetsLibrary()
     var assets = [AssetObject]()
     var appDelegate = AppDelegate()
+    var assetArray : [ALAsset] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,6 +94,7 @@ class ALAssetsGroupViewController: UIViewController {
                         stop.initialize(true)
                         group?.enumerateAssetsUsingBlock({ (asset: ALAsset?, index: Int, stop: UnsafeMutablePointer<ObjCBool>) -> Void in
                             if (asset != nil) {
+                                self.assetArray.append(asset!)
                                 let assetObject = AssetObject()
                                 assetObject.URL = asset!.defaultRepresentation().url()
                                 assetObject.Thumbnail = self.generateThumbImage(assetObject.URL!)
