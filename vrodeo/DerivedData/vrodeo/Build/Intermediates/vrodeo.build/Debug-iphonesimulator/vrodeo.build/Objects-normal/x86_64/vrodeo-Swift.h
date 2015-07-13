@@ -87,6 +87,8 @@ typedef struct _NSZone NSZone;
 @import CoreGraphics;
 #endif
 
+#import "/Users/caitlin/src/Clients/vrodeo/vrodeo/vrodeo/vrodeo/vrodeo-Bridging-Header.h"
+
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
 #pragma clang diagnostic ignored "-Wduplicate-method-arg"
 @class ALAssetsLibrary;
@@ -129,6 +131,19 @@ SWIFT_CLASS("_TtC6vrodeo11AppDelegate")
 - (SWIFT_NULLABILITY(nonnull) instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
+@class CLCloudinary;
+@class ALAsset;
+
+SWIFT_CLASS("_TtC6vrodeo24CloudinaryViewController")
+@interface CloudinaryViewController : UIViewController <CLUploaderDelegate>
+@property (nonatomic) CLCloudinary * __nonnull Cloudinary;
+- (void)viewDidLoad;
+- (void)uploadVideo:(ALAsset * __nonnull)video;
+- (void)didReceiveMemoryWarning;
+- (SWIFT_NULLABILITY(nonnull) instancetype)initWithNibName:(NSString * __nullable)nibNameOrNil bundle:(NSBundle * __nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
+- (SWIFT_NULLABILITY(nonnull) instancetype)initWithCoder:(NSCoder * __nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+@end
+
 @class UIImagePickerController;
 @class MPMoviePlayerController;
 @class ALAssetsGroup;
@@ -149,6 +164,7 @@ SWIFT_CLASS("_TtC6vrodeo19FirstViewController")
 @property (nonatomic) MPMoviePlayerController * __null_unspecified moviePlayer;
 @property (nonatomic) ALAssetsGroup * __nonnull vrodeoGroup;
 @property (nonatomic, readonly) ALAssetsGroupViewController * __nonnull assets;
+@property (nonatomic, readonly) CloudinaryViewController * __nonnull cloudinary;
 @property (nonatomic, weak) IBOutlet UICollectionView * __null_unspecified videoTableCollectionView;
 - (IBAction)refreshTable:(UIBarButtonItem * __nonnull)sender;
 - (NSInteger)collectionView:(UICollectionView * __nonnull)collectionView numberOfItemsInSection:(NSInteger)section;

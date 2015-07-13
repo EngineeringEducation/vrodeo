@@ -19,6 +19,9 @@
 		486F4C041B51E93C00860A65 /* Ranch Roping Team 13 Ride 1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 486F4C031B51E93C00860A65 /* Ranch Roping Team 13 Ride 1.mp4 */; };
 		486F4C061B51EBA600860A65 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 486F4C051B51EBA600860A65 /* AssetsLibrary.framework */; };
 		486F4C0A1B525C8A00860A65 /* PhotoCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486F4C091B525C8A00860A65 /* PhotoCellCollectionViewCell.swift */; };
+		486F4C0F1B5271F800860A65 /* libCloudinary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 486F4C0E1B5271F800860A65 /* libCloudinary.a */; };
+		486F4C111B52723000860A65 /* Cloudinary in Resources */ = {isa = PBXBuildFile; fileRef = 486F4C101B52723000860A65 /* Cloudinary */; };
+		486F4C161B52733200860A65 /* CloudinaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486F4C151B52733200860A65 /* CloudinaryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +51,10 @@
 		486F4C031B51E93C00860A65 /* Ranch Roping Team 13 Ride 1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Ranch Roping Team 13 Ride 1.mp4"; path = "../../../../../../Downloads/Ranch Roping Team 13 Ride 1.mp4"; sourceTree = "<group>"; };
 		486F4C051B51EBA600860A65 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		486F4C091B525C8A00860A65 /* PhotoCellCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCellCollectionViewCell.swift; sourceTree = "<group>"; };
+		486F4C0E1B5271F800860A65 /* libCloudinary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCloudinary.a; sourceTree = "<group>"; };
+		486F4C101B52723000860A65 /* Cloudinary */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Cloudinary; sourceTree = "<group>"; };
+		486F4C121B5272E500860A65 /* vrodeo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "vrodeo-Bridging-Header.h"; sourceTree = "<group>"; };
+		486F4C151B52733200860A65 /* CloudinaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudinaryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +63,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				486F4C061B51EBA600860A65 /* AssetsLibrary.framework in Frameworks */,
+				486F4C0F1B5271F800860A65 /* libCloudinary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,7 +80,7 @@
 		486F4BCF1B51BE5500860A65 = {
 			isa = PBXGroup;
 			children = (
-				486F4C051B51EBA600860A65 /* AssetsLibrary.framework */,
+				486F4C0D1B5271DE00860A65 /* Frameworks */,
 				486F4BDA1B51BE5500860A65 /* vrodeo */,
 				486F4BF21B51BE5600860A65 /* vrodeoTests */,
 				486F4BD91B51BE5500860A65 /* Products */,
@@ -102,6 +110,9 @@
 				486F4BDB1B51BE5500860A65 /* Supporting Files */,
 				486F4BFF1B51BEC300860A65 /* ALAssetsGroupViewController.swift */,
 				486F4C091B525C8A00860A65 /* PhotoCellCollectionViewCell.swift */,
+				486F4C101B52723000860A65 /* Cloudinary */,
+				486F4C151B52733200860A65 /* CloudinaryViewController.swift */,
+				486F4C121B5272E500860A65 /* vrodeo-Bridging-Header.h */,
 			);
 			path = vrodeo;
 			sourceTree = "<group>";
@@ -129,6 +140,15 @@
 				486F4BF41B51BE5600860A65 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		486F4C0D1B5271DE00860A65 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				486F4C0E1B5271F800860A65 /* libCloudinary.a */,
+				486F4C051B51EBA600860A65 /* AssetsLibrary.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,6 +233,7 @@
 			files = (
 				486F4BE51B51BE5500860A65 /* Main.storyboard in Resources */,
 				486F4BEA1B51BE5500860A65 /* LaunchScreen.xib in Resources */,
+				486F4C111B52723000860A65 /* Cloudinary in Resources */,
 				486F4C021B51E93100860A65 /* IMG_6543.MOV in Resources */,
 				486F4C041B51E93C00860A65 /* Ranch Roping Team 13 Ride 1.mp4 in Resources */,
 				486F4BE71B51BE5500860A65 /* Images.xcassets in Resources */,
@@ -237,6 +258,7 @@
 				486F4BE21B51BE5500860A65 /* SecondViewController.swift in Sources */,
 				486F4BDE1B51BE5500860A65 /* AppDelegate.swift in Sources */,
 				486F4BE01B51BE5500860A65 /* FirstViewController.swift in Sources */,
+				486F4C161B52733200860A65 /* CloudinaryViewController.swift in Sources */,
 				486F4C0A1B525C8A00860A65 /* PhotoCellCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,9 +386,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = vrodeo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "vrodeo/vrodeo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -374,9 +404,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = vrodeo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "vrodeo/vrodeo-Bridging-Header.h";
 			};
 			name = Release;
 		};

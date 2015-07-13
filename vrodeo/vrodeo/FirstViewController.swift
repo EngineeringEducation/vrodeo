@@ -22,6 +22,7 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
     var moviePlayer : MPMoviePlayerController!
     var vrodeoGroup = ALAssetsGroup()
     let assets = ALAssetsGroupViewController()
+    let cloudinary = CloudinaryViewController()
     
     @IBOutlet weak var videoTableCollectionView: UICollectionView!
     
@@ -29,6 +30,8 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
         videoTableCollectionView.reloadData()
         for (var i = 0; (i < assets.assets.count); i++){
             println(assets.assets[i].URL)
+            let video = assets.assets[i].URL
+
         }
     }
     
