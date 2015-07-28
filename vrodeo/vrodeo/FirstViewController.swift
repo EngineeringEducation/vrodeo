@@ -11,6 +11,8 @@ import MobileCoreServices
 import AssetsLibrary
 import MediaPlayer
 
+import CoreImage
+
 class FirstViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     var groupName = "vrodeo"
@@ -22,7 +24,6 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
     var moviePlayer : MPMoviePlayerController!
     var vrodeoGroup = ALAssetsGroup()
     let assets = ALAssetsGroupViewController()
-    let cloudinary = CloudinaryViewController()
     
     @IBOutlet weak var videoTableCollectionView: UICollectionView!
     
@@ -31,7 +32,6 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
         for (var i = 0; (i < assets.assets.count); i++){
             println(assets.assets[i].URL)
             let video = assets.assets[i].URL
-            cloudinary.uploadVideo(assets.assetArray[i], url: video!)
         }
     }
     

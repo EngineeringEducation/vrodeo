@@ -19,16 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-//    func backgroundThread(delay: Double = 0.0, background: (() -> Void)? = nil, completion: (() -> Void)? = nil) {
-//        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)) {
-//            if(background != nil){ background!(); }
-//            
-//            let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
-//            dispatch_after(popTime, dispatch_get_main_queue()) {
-//                if(completion != nil){ completion!(); }
-//            }
-//        }
-//    }
+    func applicationDidFinishLaunching(application: UIApplication) {
+        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: AWSRegionType.USEast1, identityPoolId: "us-east-1:712aa31e-e189-42bb-82c3-b0a8496bc18a")
+        
+        let defaultServiceConfiguration = AWSServiceConfiguration(
+            region: AWSRegionType.USEast1, credentialsProvider: credentialsProvider)
+        
+        AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = defaultServiceConfiguration
+    }
     
     
     func applicationWillResignActive(application: UIApplication) {
