@@ -23,22 +23,18 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
     var videoURLs : [String] = []
     var moviePlayer : MPMoviePlayerController!
     var vrodeoGroup = ALAssetsGroup()
-    let assets = ALAssetsGroupViewController()
+    let assetsVC = AssetsManager()
     
     @IBOutlet weak var videoTableCollectionView: UICollectionView!
     
-    @IBAction func refreshTable(sender: UIBarButtonItem) {
+    func refreshTable() {
         videoTableCollectionView.reloadData()
-        for (var i = 0; (i < assets.assets.count); i++){
-            println(assets.assets[i].URL)
-            let video = assets.assets[i].URL
-        }
     }
     
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if assets.assets.count != 0 {
-            return assets.assets.count
+        if assetsVC.assets.count != 0 {
+            return assetsVC.assets.count
         } else {
             return 0
         }
@@ -46,7 +42,7 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("video", forIndexPath: indexPath) as! PhotoCellCollectionViewCell
-        cell.videoCell.image = self.assets.assets[indexPath.row].Thumbnail
+        cell.videoCell.image = self.assetsVC.assets[indexPath.row].thumbnail
         cell.videoCell.sizeToFit()
         return cell
     }
@@ -83,9 +79,13 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
             videoURLs = arr
         }
         
-        assets.setALAssetGroupName(groupName)
-        assets.addGroupAlbumToRoll()
-        assets.loadVideosFromGroupAlbum()
+        assetsVC.groupName = groupName
+        assetsVC.addGroupAlbumToRoll()
+        assetsVC.loadVideosFromGroupAlbum { (complete) -> Void in
+            if complete == true {
+                self.refreshTable()
+            }
+        }
         //need to figure out how to set the groupCount after the previous call finishes. Can't set from other one because then it crashes.
     }
     

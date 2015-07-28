@@ -22,3 +22,6 @@ xcuserdata
 ## Obj-C/Swift specific
 *.hmap
 *.ipa
+
+## lolstuff
+.DS_Store

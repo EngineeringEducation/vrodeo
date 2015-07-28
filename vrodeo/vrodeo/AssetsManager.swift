@@ -1,5 +1,5 @@
 //
-//  ALAssetsGroupViewController.swift
+//  AssetsManager.swift
 //  vrodeo
 //
 //  Created by Caitlin on 7/11/15.
@@ -11,41 +11,47 @@ import AssetsLibrary
 import AVFoundation
 
 class AssetObject {
-    var Metadata : [NSObject : AnyObject]!
-    var Image : Unmanaged<CGImage>!
-    var URL : NSURL?
-    var Thumbnail : UIImage?
+    var metadata : [NSObject : AnyObject]
+    var image : Unmanaged<CGImage>
+    var URL : NSURL
+    var thumbnail : UIImage
+    
+    init(asset : ALAsset){
+        self.URL = asset.defaultRepresentation().url()
+        self.thumbnail = self.dynamicType.generateThumbImage(self.URL)
+        self.image = asset.defaultRepresentation().fullResolutionImage()
+        self.metadata = asset.defaultRepresentation().metadata()
+    }
+    
+    class func generateThumbImage(url : NSURL) -> UIImage{
+        var asset : AVAsset = AVAsset.assetWithURL(url) as! AVAsset
+        var assetImgGenerate : AVAssetImageGenerator = AVAssetImageGenerator(asset: asset)
+        assetImgGenerate.appliesPreferredTrackTransform = true
+        var error       : NSError? = nil
+        var time        : CMTime = CMTimeMake(1, 30)
+        var img         : CGImageRef = assetImgGenerate.copyCGImageAtTime(time, actualTime: nil, error: &error)
+        var frameImg    : UIImage = UIImage(CGImage: img)!
+        
+        return frameImg
+    }
+
 }
 
 
-class ALAssetsGroupViewController: UIViewController {
+class AssetsManager {
 
-    var groupName : String?
+    var groupName : String? {
+        didSet {
+            println("new group name: \(self.groupName)")
+        }
+    }
     var library = ALAssetsLibrary()
     var assets = [AssetObject]()
-    var appDelegate = AppDelegate()
-    var assetArray : [ALAsset] = []
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func setALAssetGroupName(name: String){
-        groupName = name
-    }
     
     func addGroupAlbumToRoll(){
-        self.library.addAssetsGroupAlbumWithName(groupName, resultBlock: { (group) -> Void in
-        }) { (err) -> Void in
+        self.library.addAssetsGroupAlbumWithName(groupName, resultBlock: nil, failureBlock: { (err) -> Void in
             if ((err) != nil) {println("Album could not be added")}
-        }
+        })
     }
     
     func saveVideoToGalleryGroup(videoURL: NSURL){
@@ -62,11 +68,7 @@ class ALAssetsGroupViewController: UIViewController {
                                         self.library.assetForURL(assetURL,
                                             resultBlock: { (asset: ALAsset!) -> Void in
                                                 group!.addAsset(asset)
-                                                let assetObject = AssetObject()
-                                                assetObject.URL = asset!.defaultRepresentation().url()
-                                                assetObject.Thumbnail = self.generateThumbImage(assetObject.URL!)
-                                                assetObject.Image = asset!.defaultRepresentation().fullResolutionImage()
-                                                assetObject.Metadata = asset!.defaultRepresentation().metadata()
+                                                let assetObject = AssetObject(asset: asset)
                                                 self.assets.append(assetObject)
                                             },
                                             
@@ -86,46 +88,32 @@ class ALAssetsGroupViewController: UIViewController {
         )}
     
     
-    func loadVideosFromGroupAlbum() {
+    func loadVideosFromGroupAlbum(completion: (Bool) -> Void) {
         self.library.enumerateGroupsWithTypes(ALAssetsGroupType(ALAssetsGroupAlbum),
             usingBlock: { (group: ALAssetsGroup?, stop: UnsafeMutablePointer<ObjCBool>) in
                 if (group != nil) {
                     if group!.valueForProperty(ALAssetsGroupPropertyName).isEqualToString(self.groupName!) {
                         stop.initialize(true)
                         group?.enumerateAssetsUsingBlock({ (asset: ALAsset?, index: Int, stop: UnsafeMutablePointer<ObjCBool>) -> Void in
-                            if (asset != nil) {
-                                self.assetArray.append(asset!)
-                                let assetObject = AssetObject()
-                                assetObject.URL = asset!.defaultRepresentation().url()
-                                assetObject.Thumbnail = self.generateThumbImage(assetObject.URL!)
-                                assetObject.Image = asset!.defaultRepresentation().fullResolutionImage()
-                                assetObject.Metadata = asset!.defaultRepresentation().metadata()
+                            if let asset = asset {
+                                let assetObject = AssetObject(asset: asset)
                                 self.assets.append(assetObject)
                             }
                         })
+                        completion(true)
                     }
                 }
             },
             
             failureBlock: { (theError: NSError!) -> Void in
                 println("Error saving video \(theError)")
+                completion(false)
             }
             
         )
     }
     
-    func generateThumbImage(url : NSURL) -> UIImage{
-        var asset : AVAsset = AVAsset.assetWithURL(url) as! AVAsset
-        var assetImgGenerate : AVAssetImageGenerator = AVAssetImageGenerator(asset: asset)
-        assetImgGenerate.appliesPreferredTrackTransform = true
-        var error       : NSError? = nil
-        var time        : CMTime = CMTimeMake(1, 30)
-        var img         : CGImageRef = assetImgGenerate.copyCGImageAtTime(time, actualTime: nil, error: &error)
-        var frameImg    : UIImage = UIImage(CGImage: img)!
-        
-        return frameImg
-    }
-
+   
     
 
     /*
