@@ -23,10 +23,14 @@ class AssetObject {
         self.metadata = asset.defaultRepresentation().metadata()
     }
     
+    deinit {
+        image.release()
+    }
+    
     class func generateThumbImage(url : NSURL) -> UIImage{
         var asset : AVAsset = AVAsset.assetWithURL(url) as! AVAsset
         var assetImgGenerate : AVAssetImageGenerator = AVAssetImageGenerator(asset: asset)
-        assetImgGenerate.appliesPreferredTrackTransform = true
+            assetImgGenerate.appliesPreferredTrackTransform = true
         var error       : NSError? = nil
         var time        : CMTime = CMTimeMake(1, 30)
         var img         : CGImageRef = assetImgGenerate.copyCGImageAtTime(time, actualTime: nil, error: &error)
@@ -45,7 +49,8 @@ class AssetsManager {
             println("new group name: \(self.groupName)")
         }
     }
-    var library = ALAssetsLibrary()
+    
+    private var library = ALAssetsLibrary()
     var assets = [AssetObject]()
     
     func addGroupAlbumToRoll(){
@@ -54,76 +59,61 @@ class AssetsManager {
         })
     }
     
-    func saveVideoToGalleryGroup(videoURL: NSURL){
-        library.enumerateGroupsWithTypes(ALAssetsGroupType(ALAssetsGroupAlbum),
-                usingBlock: { (group: ALAssetsGroup?, stop: UnsafeMutablePointer<ObjCBool>) in
-                    if (group != nil) {
-                        if group!.valueForProperty(ALAssetsGroupPropertyName).isEqualToString(self.groupName!) {
-                            stop.initialize(true)
-                            self.library.writeVideoAtPathToSavedPhotosAlbum(videoURL,
-                                completionBlock: { (assetURL, error: NSError?) in
-                                    if let theError = error?.code {
-                                        println("Error saving video \(theError)")
-                                    } else {
-                                        self.library.assetForURL(assetURL,
-                                            resultBlock: { (asset: ALAsset!) -> Void in
-                                                group!.addAsset(asset)
-                                                let assetObject = AssetObject(asset: asset)
-                                                self.assets.append(assetObject)
-                                            },
-                                            
-                                            failureBlock: { (theError: NSError!) -> Void in
-                                            println("Error saving video \(theError)")
-                                        })
-                                    }
-                                })
-
+    func saveVideoToGalleryGroup(videoURL: NSURL, completion: (Bool) -> Void){
+        self.findGroupAlbum { (complete, group) -> Void in
+            if complete {
+                self.library.writeVideoAtPathToSavedPhotosAlbum(videoURL,
+                    completionBlock: { (assetURL, error: NSError?) in
+                        if let theError = error?.code {
+                            println("Error saving video \(theError)")
+                            completion(false)
+                        } else {
+                            self.library.assetForURL(assetURL,
+                                resultBlock: { (asset: ALAsset!) -> Void in
+                                    group!.addAsset(asset)
+                                    let assetObject = AssetObject(asset: asset)
+                                    self.assets.append(assetObject)
+                                    completion(true)
+                                },
+                                
+                                failureBlock: { (theError: NSError!) -> Void in
+                                    println("Error saving video \(theError)")
+                                    completion(false)
+                            })
                         }
-                        }
-                },
-            
-                failureBlock: { (theError: NSError!) -> Void in
-                println("Error saving video \(theError)")
+                })
             }
-        )}
+        }
+    }
     
-    
-    func loadVideosFromGroupAlbum(completion: (Bool) -> Void) {
+    private func findGroupAlbum(completion: (Bool, group: ALAssetsGroup?) -> Void){ //ALAssets is nil so can return nil if returning from failureBlock
         self.library.enumerateGroupsWithTypes(ALAssetsGroupType(ALAssetsGroupAlbum),
-            usingBlock: { (group: ALAssetsGroup?, stop: UnsafeMutablePointer<ObjCBool>) in
-                if (group != nil) {
-                    if group!.valueForProperty(ALAssetsGroupPropertyName).isEqualToString(self.groupName!) {
-                        stop.initialize(true)
-                        group?.enumerateAssetsUsingBlock({ (asset: ALAsset?, index: Int, stop: UnsafeMutablePointer<ObjCBool>) -> Void in
-                            if let asset = asset {
-                                let assetObject = AssetObject(asset: asset)
-                                self.assets.append(assetObject)
-                            }
-                        })
-                        completion(true)
-                    }
+        usingBlock: { (group: ALAssetsGroup?, stop: UnsafeMutablePointer<ObjCBool>) in
+            if let group = group {
+                if group.valueForProperty(ALAssetsGroupPropertyName).isEqualToString(self.groupName!) {
+                    stop.initialize(true)
+                    completion(true, group: group)
                 }
-            },
-            
-            failureBlock: { (theError: NSError!) -> Void in
-                println("Error saving video \(theError)")
-                completion(false)
             }
-            
-        )
+        },
+        failureBlock: { (theError: NSError!) -> Void in
+            println("Error saving video \(theError)")
+            completion(false, group: nil)
+        })
     }
     
-   
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func loadVideosFromGroupAlbum(completion: (Bool) -> Void) {        
+        self.findGroupAlbum { (complete, group) -> Void in
+            if complete {
+                group?.enumerateAssetsUsingBlock({ (asset: ALAsset?, index: Int, stop: UnsafeMutablePointer<ObjCBool>) -> Void in
+                    if let asset = asset {
+                        let assetObject = AssetObject(asset: asset)
+                        self.assets.append(assetObject)
+                    }
+                })
+                completion(true)
+            }
+        }
+        
     }
-    */
-
 }

@@ -27,11 +27,6 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
     
     @IBOutlet weak var videoTableCollectionView: UICollectionView!
     
-    func refreshTable() {
-        videoTableCollectionView.reloadData()
-    }
-    
-    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if assetsVC.assets.count != 0 {
             return assetsVC.assets.count
@@ -46,8 +41,6 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
         cell.videoCell.sizeToFit()
         return cell
     }
-    
-//    @IBOutlet weak var videoTable: UITableView!
     
     @IBAction func recordVideo(sender: UIBarButtonItem) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
@@ -83,10 +76,9 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
         assetsVC.addGroupAlbumToRoll()
         assetsVC.loadVideosFromGroupAlbum { (complete) -> Void in
             if complete == true {
-                self.refreshTable()
+                self.videoTableCollectionView.reloadData()
             }
         }
-        //need to figure out how to set the groupCount after the previous call finishes. Can't set from other one because then it crashes.
     }
     
     override func viewDidLoad() {
@@ -126,15 +118,13 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
         var videoURL = info[UIImagePickerControllerMediaURL] as! NSURL
         var videoURLString = toString(videoURL)
         videoURLs.append(videoURLString)
-//        videoTable.reloadData()
-        println(videoURLString)
-        println(videoURL)
-        NSUserDefaults.standardUserDefaults().setValue(videoURLs, forKey: "vrodeo-videos")
-//        self.library.saveVideo(videoURL, toAlbum: "vrodeo", completion: { (url, err) -> Void in
-//            println(url)
-//            }) { (err) -> Void in
-//                println(err)
-//        }
-        
+        assetsVC.saveVideoToGalleryGroup(videoURL, completion: { (complete) -> Void in
+            if complete {
+                self.videoTableCollectionView.reloadData()
+            } else {
+                println("error")
+            }
+        })
+        self.videoTableCollectionView.reloadData()
     }
 }

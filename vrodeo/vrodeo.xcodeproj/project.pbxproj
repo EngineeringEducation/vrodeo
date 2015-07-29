@@ -477,6 +477,7 @@
 					"$(PROJECT_DIR)/aws-ios-sdk-2.2.2/frameworks/extras",
 				);
 				INFOPLIST_FILE = vrodeo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -499,6 +500,7 @@
 					"$(PROJECT_DIR)/aws-ios-sdk-2.2.2/frameworks/extras",
 				);
 				INFOPLIST_FILE = vrodeo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
