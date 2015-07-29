@@ -59,7 +59,9 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
             }
         }
     }
-        
+    
+    // MARK: Video Recorder Interactions
+    
     @IBAction func recordVideo(sender: UIBarButtonItem) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
             
@@ -79,6 +81,42 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
         
     }
     
+    // TODO: This transition is super slow. Works, though so moving on. Ask Janardan.
+    func videoStopped(notification : NSNotification){
+        moviePlayer.view.removeFromSuperview()
+    }
+    
+    // OK so right now, the camera launches but isn't actually ready. Need to implement a timer or something to catch this. Not a huge deal, just push record again and it works when it's ready.
+    func cameraIsReady(notification : NSNotification) {
+        self.camera.startVideoCapture()
+    }
+    
+    
+    // MARK: Image Picker Controller
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        self.imagePickerControllerDidCancel(picker)
+        var videoURL = info[UIImagePickerControllerMediaURL] as! NSURL
+        var videoURLString = toString(videoURL)
+        assetsVC.saveVideoToGalleryGroup(videoURL, completion: { (complete) -> Void in
+            if complete {
+                self.videoTableCollectionView.reloadData()
+            } else {
+                println("error")
+            }
+        })
+        self.videoTableCollectionView.reloadData()
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        self.camera.dismissViewControllerAnimated(true, completion: { () -> Void in
+            
+        })
+    }
+
+
+    
+    // MARK: Views
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
@@ -99,35 +137,4 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
         super.viewDidLoad()
     }
     
-    // TODO: This transition is super slow. Works, though so moving on. Ask Janardan.
-    func videoStopped(notification : NSNotification){
-        moviePlayer.view.removeFromSuperview()
-    }
-    
-    // OK so right now, the camera launches but isn't actually ready. Need to implement a timer or something to catch this. Not a huge deal, just push record again and it works when it's ready.
-    func cameraIsReady(notification : NSNotification) {
-        self.camera.startVideoCapture()
-    }
-    
-    
-    
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        self.camera.dismissViewControllerAnimated(true, completion: { () -> Void in
-            
-        })
-    }
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        self.imagePickerControllerDidCancel(picker)
-        var videoURL = info[UIImagePickerControllerMediaURL] as! NSURL
-        var videoURLString = toString(videoURL)
-        assetsVC.saveVideoToGalleryGroup(videoURL, completion: { (complete) -> Void in
-            if complete {
-                self.videoTableCollectionView.reloadData()
-            } else {
-                println("error")
-            }
-        })
-        self.videoTableCollectionView.reloadData()
-    }
 }
