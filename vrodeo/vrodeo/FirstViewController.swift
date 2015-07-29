@@ -20,12 +20,14 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
     var camera = UIImagePickerController()
     var cameraRoll = UIImagePickerController()
     var library = ALAssetsLibrary()
-    var videoURLs : [String] = []
     var moviePlayer : MPMoviePlayerController!
     var vrodeoGroup = ALAssetsGroup()
     let assetsVC = AssetsManager()
     
     @IBOutlet weak var videoTableCollectionView: UICollectionView!
+    
+
+    // MARK: Collection View
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if assetsVC.assets.count != 0 {
@@ -42,6 +44,22 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
         return cell
     }
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if (assetsVC.assets.count > 0){
+            var urlString = assetsVC.assets[indexPath.row].URL
+            self.moviePlayer = MPMoviePlayerController(contentURL: urlString)
+            if (self.moviePlayer != nil) {
+                self.moviePlayer.prepareToPlay()
+                self.view.addSubview(moviePlayer.view)
+                self.moviePlayer.view.frame = self.view.bounds
+                self.moviePlayer.fullscreen = true
+                self.moviePlayer.scalingMode = .AspectFill
+                self.moviePlayer.movieSourceType = .File
+                self.moviePlayer.play()
+            }
+        }
+    }
+        
     @IBAction func recordVideo(sender: UIBarButtonItem) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
             
@@ -66,11 +84,7 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
         
         var defaultCenter = NSNotificationCenter.defaultCenter()
         defaultCenter.addObserver(self, selector: "cameraIsReady:", name: AVCaptureSessionDidStartRunningNotification, object: nil)
-        
-        if (NSUserDefaults.standardUserDefaults().valueForKey("vrodeo-videos") != nil) {
-            var arr = NSUserDefaults.standardUserDefaults().valueForKey("vrodeo-videos") as! [String]
-            videoURLs = arr
-        }
+        defaultCenter.addObserver(self, selector: "videoStopped:", name: MPMoviePlayerDidExitFullscreenNotification, object: nil)
         
         assetsVC.groupName = groupName
         assetsVC.addGroupAlbumToRoll()
@@ -85,27 +99,17 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
         super.viewDidLoad()
     }
     
+    // TODO: This transition is super slow. Works, though so moving on. Ask Janardan.
+    func videoStopped(notification : NSNotification){
+        moviePlayer.view.removeFromSuperview()
+    }
+    
     // OK so right now, the camera launches but isn't actually ready. Need to implement a timer or something to catch this. Not a huge deal, just push record again and it works when it's ready.
     func cameraIsReady(notification : NSNotification) {
         self.camera.startVideoCapture()
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if (videoURLs.count > 0){
-            var urlString = videoURLs[indexPath.row]
-            self.moviePlayer = MPMoviePlayerController(contentURL: NSURL(fileURLWithPath: urlString))
-            
-            if (self.moviePlayer != nil) {
-                self.moviePlayer.prepareToPlay()
-                self.view.addSubview(moviePlayer.view)
-                self.moviePlayer.view.frame = self.view.bounds
-                self.moviePlayer.fullscreen = true
-                self.moviePlayer.scalingMode = .AspectFill
-                self.moviePlayer.movieSourceType = .File
-                self.moviePlayer.play()
-            }
-        }
-    }
+    
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         self.camera.dismissViewControllerAnimated(true, completion: { () -> Void in
@@ -117,7 +121,6 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
         self.imagePickerControllerDidCancel(picker)
         var videoURL = info[UIImagePickerControllerMediaURL] as! NSURL
         var videoURLString = toString(videoURL)
-        videoURLs.append(videoURLString)
         assetsVC.saveVideoToGalleryGroup(videoURL, completion: { (complete) -> Void in
             if complete {
                 self.videoTableCollectionView.reloadData()
