@@ -10,8 +10,9 @@ import AVFoundation
 import MobileCoreServices
 import AssetsLibrary
 import MediaPlayer
-
+import AVKit
 import CoreImage
+import QuartzCore
 
 class FirstViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -27,7 +28,7 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
     @IBOutlet weak var videoTableCollectionView: UICollectionView!
     
 
-    // MARK: Collection View
+    // MARK: - Collection View
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if assetsVC.assets.count != 0 {
@@ -47,20 +48,28 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if (assetsVC.assets.count > 0){
             var urlString = assetsVC.assets[indexPath.row].URL
-            self.moviePlayer = MPMoviePlayerController(contentURL: urlString)
-            if (self.moviePlayer != nil) {
-                self.moviePlayer.prepareToPlay()
-                self.view.addSubview(moviePlayer.view)
-                self.moviePlayer.view.frame = self.view.bounds
-                self.moviePlayer.fullscreen = true
-                self.moviePlayer.scalingMode = .AspectFill
-                self.moviePlayer.movieSourceType = .File
-                self.moviePlayer.play()
-            }
+            var playerItem = AVPlayerItem(URL: urlString)
+            var player = AVPlayer(playerItem: playerItem)
+            var playerLayer = AVPlayerLayer(player: player)
+            playerLayer.frame = self.view.frame
+            self.view.layer.addSublayer(playerLayer)
+            player.play()
+            
+            
+//            self.moviePlayer = MPMoviePlayerController(contentURL: urlString)
+//            if (self.moviePlayer != nil) {
+//                self.moviePlayer.prepareToPlay()
+//                self.presentMoviePlayerViewControllerAnimated(self.moviePlayer)
+//                self.moviePlayer.view.frame = self.view.bounds
+//                self.moviePlayer.fullscreen = true
+//                self.moviePlayer.scalingMode = .AspectFill
+//                self.moviePlayer.movieSourceType = .File
+//                self.moviePlayer.play()
+//            }
         }
     }
     
-    // MARK: Video Recorder Interactions
+    // MARK: - Video Recorder Interactions
     
     @IBAction func recordVideo(sender: UIBarButtonItem) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
@@ -92,7 +101,7 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
     }
     
     
-    // MARK: Image Picker Controller
+    // MARK: - Image Picker Controller
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         self.imagePickerControllerDidCancel(picker)
@@ -116,7 +125,7 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
 
 
     
-    // MARK: Views
+    // MARK: - Views
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
