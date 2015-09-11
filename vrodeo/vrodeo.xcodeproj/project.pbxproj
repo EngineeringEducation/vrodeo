@@ -40,6 +40,7 @@
 		486F4C0A1B525C8A00860A65 /* PhotoCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486F4C091B525C8A00860A65 /* PhotoCellCollectionViewCell.swift */; };
 		486F4C111B52723000860A65 /* Cloudinary in Resources */ = {isa = PBXBuildFile; fileRef = 486F4C101B52723000860A65 /* Cloudinary */; };
 		486F4C161B52733200860A65 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486F4C151B52733200860A65 /* UploadViewController.swift */; };
+		48F4A1651B8FC5EC00DB20B7 /* bullridingstencil.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 48F4A1641B8FC5EC00DB20B7 /* bullridingstencil.jpg */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		486F4C101B52723000860A65 /* Cloudinary */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Cloudinary; sourceTree = "<group>"; };
 		486F4C121B5272E500860A65 /* vrodeo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "vrodeo-Bridging-Header.h"; sourceTree = "<group>"; };
 		486F4C151B52733200860A65 /* UploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
+		48F4A1641B8FC5EC00DB20B7 /* bullridingstencil.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bullridingstencil.jpg; path = ../../../../../../Downloads/bullridingstencil.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 				486F4BE81B51BE5500860A65 /* LaunchScreen.xib */,
 				486F4C011B51E93100860A65 /* IMG_6543.MOV */,
 				486F4C031B51E93C00860A65 /* Ranch Roping Team 13 Ride 1.mp4 */,
+				48F4A1641B8FC5EC00DB20B7 /* bullridingstencil.jpg */,
 				486F4BDB1B51BE5500860A65 /* Supporting Files */,
 				486F4BFF1B51BEC300860A65 /* AssetsManager.swift */,
 				486F4C091B525C8A00860A65 /* PhotoCellCollectionViewCell.swift */,
@@ -279,6 +282,7 @@
 		486F4BD01B51BE5500860A65 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = vrodeo;
@@ -320,6 +324,7 @@
 				486F4BE51B51BE5500860A65 /* Main.storyboard in Resources */,
 				486F4BEA1B51BE5500860A65 /* LaunchScreen.xib in Resources */,
 				486F4C111B52723000860A65 /* Cloudinary in Resources */,
+				48F4A1651B8FC5EC00DB20B7 /* bullridingstencil.jpg in Resources */,
 				486F4C021B51E93100860A65 /* IMG_6543.MOV in Resources */,
 				486F4C041B51E93C00860A65 /* Ranch Roping Team 13 Ride 1.mp4 in Resources */,
 				486F4BE71B51BE5500860A65 /* Images.xcassets in Resources */,

@@ -12,7 +12,6 @@ import AssetsLibrary
 import MediaPlayer
 import AVKit
 import CoreImage
-import QuartzCore
 
 class FirstViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -47,25 +46,14 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if (assetsVC.assets.count > 0){
-            var urlString = assetsVC.assets[indexPath.row].URL
-            var playerItem = AVPlayerItem(URL: urlString)
-            var player = AVPlayer(playerItem: playerItem)
-            var playerLayer = AVPlayerLayer(player: player)
-            playerLayer.frame = self.view.frame
-            self.view.layer.addSublayer(playerLayer)
-            player.play()
-            
-            
-//            self.moviePlayer = MPMoviePlayerController(contentURL: urlString)
-//            if (self.moviePlayer != nil) {
-//                self.moviePlayer.prepareToPlay()
-//                self.presentMoviePlayerViewControllerAnimated(self.moviePlayer)
-//                self.moviePlayer.view.frame = self.view.bounds
-//                self.moviePlayer.fullscreen = true
-//                self.moviePlayer.scalingMode = .AspectFill
-//                self.moviePlayer.movieSourceType = .File
-//                self.moviePlayer.play()
-//            }
+            let urlString = assetsVC.assets[indexPath.row].URL
+            let player = AVPlayer(URL: urlString)
+            let playerViewController = AVPlayerViewController()
+            playerViewController.player = player
+            self.presentViewController(playerViewController, animated: true, completion: { () -> Void in
+                player.play()
+                playerViewController
+            })
         }
     }
     
@@ -76,16 +64,16 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
             
             camera.delegate = self
             camera.sourceType = UIImagePickerControllerSourceType.Camera
-            camera.mediaTypes = [kUTTypeMovie]
+            camera.mediaTypes = [kUTTypeMovie as String]
             camera.showsCameraControls = true
             camera.allowsEditing = true
             camera.cameraCaptureMode = .Video
-            println(camera.cameraCaptureMode.rawValue)
+            print(camera.cameraCaptureMode.rawValue, terminator: "")
             self.presentViewController(camera, animated: true, completion: { () -> Void in
             })
             
         } else {
-            println("no camera available")
+            print("no camera available", terminator: "")
         }
         
     }
@@ -103,15 +91,14 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
     
     // MARK: - Image Picker Controller
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         self.imagePickerControllerDidCancel(picker)
-        var videoURL = info[UIImagePickerControllerMediaURL] as! NSURL
-        var videoURLString = toString(videoURL)
+        let videoURL = info[UIImagePickerControllerMediaURL] as! NSURL
         assetsVC.saveVideoToGalleryGroup(videoURL, completion: { (complete) -> Void in
             if complete {
                 self.videoTableCollectionView.reloadData()
             } else {
-                println("error")
+                print("error", terminator: "")
             }
         })
         self.videoTableCollectionView.reloadData()
@@ -129,10 +116,12 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
-        var defaultCenter = NSNotificationCenter.defaultCenter()
+        let defaultCenter = NSNotificationCenter.defaultCenter()
         defaultCenter.addObserver(self, selector: "cameraIsReady:", name: AVCaptureSessionDidStartRunningNotification, object: nil)
         defaultCenter.addObserver(self, selector: "videoStopped:", name: MPMoviePlayerDidExitFullscreenNotification, object: nil)
         
+        
+        // TODO: Need to add a check to only add it if it's not on the screen already
         assetsVC.groupName = groupName
         assetsVC.addGroupAlbumToRoll()
         assetsVC.loadVideosFromGroupAlbum { (complete) -> Void in

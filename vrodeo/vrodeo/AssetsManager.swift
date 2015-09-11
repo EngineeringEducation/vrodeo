@@ -18,27 +18,33 @@ class AssetObject {
     
     init(asset : ALAsset){
         self.URL = asset.defaultRepresentation().url()
-        self.thumbnail = self.dynamicType.generateThumbImage(self.URL)
         self.image = asset.defaultRepresentation().fullResolutionImage()
         self.metadata = asset.defaultRepresentation().metadata()
+//        self.thumbnail = UIImage(named: "bullridingstencil.jpg")!
+        self.thumbnail = AssetObject.generateThumbImage(self.URL)
     }
     
     deinit {
         image.release()
     }
-    
-    class func generateThumbImage(url : NSURL) -> UIImage{
-        var asset : AVAsset = AVAsset.assetWithURL(url) as! AVAsset
-        var assetImgGenerate : AVAssetImageGenerator = AVAssetImageGenerator(asset: asset)
-            assetImgGenerate.appliesPreferredTrackTransform = true
-        var error       : NSError? = nil
-        var time        : CMTime = CMTimeMake(1, 30)
-        var img         : CGImageRef = assetImgGenerate.copyCGImageAtTime(time, actualTime: nil, error: &error)
-        var frameImg    : UIImage = UIImage(CGImage: img)!
-        
-        return frameImg
-    }
 
+    static func generateThumbImage(url : NSURL) -> UIImage{
+        let asset : AVAsset = AVAsset(URL: url)
+        let assetImgGenerate : AVAssetImageGenerator = AVAssetImageGenerator(asset: asset)
+            assetImgGenerate.appliesPreferredTrackTransform = true
+        let time        : CMTime = CMTimeMake(1, 30)
+        var img         : CGImageRef
+        do {
+            img = try assetImgGenerate.copyCGImageAtTime(time, actualTime: nil)
+            let frameImg : UIImage = UIImage(CGImage: img)
+            return frameImg
+        } catch var error as NSError {
+            print(error)
+            let defaultThumbnail = UIImage(named: "bullridingstencil.jpg")
+            return defaultThumbnail!
+        }
+        
+    }
 }
 
 
@@ -46,7 +52,7 @@ class AssetsManager {
 
     var groupName : String? {
         didSet {
-            println("new group name: \(self.groupName)")
+            print("new group name: \(self.groupName)")
         }
     }
     
@@ -55,7 +61,7 @@ class AssetsManager {
     
     func addGroupAlbumToRoll(){
         self.library.addAssetsGroupAlbumWithName(groupName, resultBlock: nil, failureBlock: { (err) -> Void in
-            if ((err) != nil) {println("Album could not be added")}
+            if ((err) != nil) {print("Album could not be added")}
         })
     }
     
@@ -65,7 +71,7 @@ class AssetsManager {
                 self.library.writeVideoAtPathToSavedPhotosAlbum(videoURL,
                     completionBlock: { (assetURL, error: NSError?) in
                         if let theError = error?.code {
-                            println("Error saving video \(theError)")
+                            print("Error saving video \(theError)")
                             completion(false)
                         } else {
                             self.library.assetForURL(assetURL,
@@ -77,7 +83,7 @@ class AssetsManager {
                                 },
                                 
                                 failureBlock: { (theError: NSError!) -> Void in
-                                    println("Error saving video \(theError)")
+                                    print("Error saving video \(theError)")
                                     completion(false)
                             })
                         }
@@ -97,7 +103,7 @@ class AssetsManager {
             }
         },
         failureBlock: { (theError: NSError!) -> Void in
-            println("Error saving video \(theError)")
+            print("Error saving video \(theError)")
             completion(false, group: nil)
         })
     }
@@ -117,3 +123,4 @@ class AssetsManager {
         
     }
 }
+

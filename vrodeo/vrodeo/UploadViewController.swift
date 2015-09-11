@@ -22,7 +22,7 @@ class UploadViewController: UIViewController {
     }
     
     func uploadVideo(video: ALAsset, url: NSURL){
-        println(video)
+        print(video)
         
         let dynamoDB = AWSDynamoDB.defaultDynamoDB()
         let listTableInput = AWSDynamoDBListTablesInput()
@@ -30,7 +30,7 @@ class UploadViewController: UIViewController {
             let listTablesOutput = task.result as! AWSDynamoDBListTablesOutput
             
             for tableName : AnyObject in listTablesOutput.tableNames {
-                println("\(tableName)")
+                print("\(tableName)")
             }
             
             return nil
@@ -40,7 +40,7 @@ class UploadViewController: UIViewController {
     }
     
     func progressBytes(progress: Int64, totalBytes total: Int64) {
-        println("something")
+        print("something")
     }
 
     
