@@ -3,8 +3,4 @@
 //
 
 #import "Cloudinary/Cloudinary.h"
-#import <AWSCore/AWSCore.h>
-#import <AWSS3/AWSS3.h>
-#import <AWSDynamoDB/AWSDynamoDB.h>
-#import <AWSSQS/AWSSQS.h>
-#import <AWSCognito/AWSCognito.h>
+#import "AFAmazonS3Manager.h"

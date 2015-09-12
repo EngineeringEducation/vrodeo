@@ -24,17 +24,17 @@ class UploadViewController: UIViewController {
     func uploadVideo(video: ALAsset, url: NSURL){
         print(video)
         
-        let dynamoDB = AWSDynamoDB.defaultDynamoDB()
-        let listTableInput = AWSDynamoDBListTablesInput()
-        dynamoDB.listTables(listTableInput).continueWithBlock{ (task: AWSTask!) -> AnyObject! in
-            let listTablesOutput = task.result as! AWSDynamoDBListTablesOutput
-            
-            for tableName : AnyObject in listTablesOutput.tableNames {
-                print("\(tableName)")
-            }
-            
-            return nil
-        }
+//        let dynamoDB = AWSDynamoDB.defaultDynamoDB()
+//        let listTableInput = AWSDynamoDBListTablesInput()
+//        dynamoDB.listTables(listTableInput).continueWithBlock{ (task: AWSTask!) -> AnyObject! in
+//            let listTablesOutput = task.result as! AWSDynamoDBListTablesOutput
+//            
+//            for tableName : AnyObject in listTablesOutput.tableNames {
+//                print("\(tableName)")
+//            }
+//            
+//            return nil
+//        }
         
 
     }

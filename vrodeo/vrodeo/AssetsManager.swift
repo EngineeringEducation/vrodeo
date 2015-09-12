@@ -15,8 +15,10 @@ class AssetObject {
     var image : Unmanaged<CGImage>
     var URL : NSURL
     var thumbnail : UIImage
+    let asset: ALAsset
     
     init(asset : ALAsset){
+        self.asset = asset
         self.URL = asset.defaultRepresentation().url()
         self.image = asset.defaultRepresentation().fullResolutionImage()
         self.metadata = asset.defaultRepresentation().metadata()
